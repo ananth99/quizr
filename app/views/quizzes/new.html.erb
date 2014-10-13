@@ -1,1 +1,20 @@
-<%= @questions.class %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quizr</title>
+</head>
+<body>
+<h1>Quiz</h1>
+<%= form_tag({controller: "quizzes", action: "submit"}, method: "post") do %>
+  <% @questions.each_with_index do |q,index| %>
+    <%= "#{index+1})" %><%= q.question %>
+    <% q.options.each do |opt| %>
+      <%= radio_button_tag(:options, opt.id) %>
+      <%= label_tag(:option,"#{opt.option}") %>
+    <% end %>
+    <%= submit_tag("submit") if params[:page]=="3" %>
+  <% end %>
+<% end %>
+<%= will_paginate @questions, :page_links => false, renderer: BootstrapPagination::Rails %>
+</body>
+</html>
