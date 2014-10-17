@@ -4,6 +4,6 @@ class Question < ActiveRecord::Base
   self.per_page = 1
 
   def random_question
-    return Question.limit(1).order('RANDOM()')
+    return Question.limit(1).order('RANDOM()').first
   end
 end

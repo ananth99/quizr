@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   root 'quizzes#new'
 
   # Quiz routes
-  get 'quiz/new' => 'quizzes#new'
-  post 'quiz/submit' => 'quizzes#submit'
+  get 'quiz/new',     to: 'quizzes#new',      as: :new_quiz
+  post 'quiz/submit', to: 'quizzes#submit',    as: :submit_quiz
+  get 'quiz/results', to: 'quizzes#results',  as: :results_quiz
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

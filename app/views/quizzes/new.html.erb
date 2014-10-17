@@ -7,9 +7,8 @@
 <h1>Quiz</h1>
 <%= link_to('signout', destroy_user_session_path, :method => :delete) %>
 <%= form_tag({controller: "quizzes", action: "submit"}, method: "post") do %>
-  <% @questions.each_with_index do |q,index| %>
-    <%= "#{index+1})" %><%= q.question %>
-    <% q.options.each do |opt| %>
+    <%= @question.question %>
+    <% @question.options.each do |opt| %>
       <%= radio_button_tag(:options, opt.id) %>
       <%= label_tag(:option,"#{opt.option}") %>
       <%= hidden_field_tag(:quiz_user, @quiz.user_id) %>
@@ -17,8 +16,6 @@
     <% end %>
     <%=  %>
     <%= submit_tag("submit") %>
-    <%= params.inspect %>
-  <% end %>
 <% end %>
 
 </body>
