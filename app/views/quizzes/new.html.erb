@@ -5,18 +5,19 @@
 </head>
 <body>
 <h1>Quiz</h1>
-<%= link_to('signout', destroy_user_session_path, :method => :delete) %>
-<%= form_tag({controller: "quizzes", action: "submit"}, method: "post") do %>
-    <%= @question.question %>
-    <% @question.options.each do |opt| %>
-      <%= radio_button_tag(:options, opt.id) %>
-      <%= label_tag(:option,"#{opt.option}") %>
-      <%= hidden_field_tag(:quiz_user, @quiz.user_id) %>
-      <%= hidden_field_tag(:quiz_session, @quiz.session) %>
+<%= link_to('signout', destroy_user_session_path, :method => :delete, :class => "btn btn-primary") %>
+  <div class="container well">
+    <%= form_tag({controller: "quizzes", action: "submit"}, method: "post") do %>
+        <%= @question.question %>
+        <% @question.options.each do |opt| %>
+          <%= radio_button_tag(:options, opt.id) %>
+          <%= label_tag(:option,"#{opt.option}") %>
+          <%= hidden_field_tag(:quiz_user, @quiz.user_id) %>
+          <%= hidden_field_tag(:quiz_session, @quiz.session) %>
+        <% end %>
+        <%=  %>
+        <%= submit_tag("submit", :class => "btn btn-success") %>
     <% end %>
-    <%=  %>
-    <%= submit_tag("submit") %>
-<% end %>
-
+  </diV>
 </body>
 </html>

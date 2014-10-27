@@ -3,12 +3,15 @@
 <title>Quiz Results </title>
 </head>
 <body>
-  <%= link_to('signout', destroy_user_session_path, :method => :delete) %>
-<ul>
+  <%= link_to('signout', destroy_user_session_path, :method => :delete, :class => "btn btn-primary") %>
+<div class="container">
+<ul class="well">
   <% @quizzes.each do |quiz| %>
     <li><%= "Quiz taken on: #{quiz.created_at}" %></li>
-    <li><%= quiz.score %></li>
+    <li><%= "Score: #{quiz.score}"%></li>
   <% end %>
 </ul>
+
+</div>
 </body>
 </html>
