@@ -30,14 +30,17 @@ class QuizzesController < ApplicationController
         $question_number +=1
         redirect_to root_path
       else
-        # raise $question_number.inspect
+        if option.answer?
+          @quiz.update(score: @quiz.correct_answer)
+        else
+          @quiz.update(score: @quiz.wrong_answer)
+        end
         @quiz.update(quiz_completed: true)
         redirect_to results_quiz_path
       end
     rescue Exception => e
       redirect_to root_path, notice: "Option cannot be blank!" 
     end
-
   end
 
   def results

@@ -7,7 +7,7 @@
 <div class="container">
 <ul class="well">
   <% @quizzes.each do |quiz| %>
-    <li><%= "Quiz taken on: #{quiz.created_at}" %></li>
+    <li><%= "Quiz taken on: #{Date.parse(quiz.created_at.to_s)}" %></li>
     <li><%= "Score: #{quiz.score}"%></li>
   <% end %>
 </ul>

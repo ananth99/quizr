@@ -1,0 +1,33 @@
+<% flash.each do |name, msg| %>
+
+<% Rails.logger.debug "name=#{name}, msg=#{msg.inspect}" %>
+
+<% if !msg.blank? && !(msg == true) %>
+<%
+str = ""
+case name 
+  when :message
+    str = "info"
+  when :alert
+    str = "error"
+  when :error
+    str = "error"
+  else
+    str = "success"
+  end
+%>
+  <div class="alert alert-<%= str %>">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <% if msg.instance_of? Array %>
+      <% if !msg.nil? && !msg.empty? %>
+        <% msg.each do |message| %>
+          <%= content_tag :div, message, :id => "flash_#{name}" %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end%>
+  </div>
+
+<% end %>
+<% end %>
